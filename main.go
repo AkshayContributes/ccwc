@@ -43,6 +43,15 @@ func switcher(args []string) {
 		filePath = strings.TrimSpace(args[0])
 	}
 
+	if filePath == "" && len(args) > 1 {
+		filePath = strings.TrimSpace(args[1])
+	}
+
+	// wc -c
+	// wc fileName
+	// wc -c fileName
+	// wc -c
+
 	switch command {
 	case "-c":
 		countBytes(filePath)
@@ -102,6 +111,7 @@ func countBytesFromFile(filePath string) (int64, error) {
 
 func countWords(filePath string) (int, error) {
 
+	fmt.Printf("Counting Words from file: %s\n", filePath)
 	if filePath == "" {
 		return countWordsFromStdin()
 	}
